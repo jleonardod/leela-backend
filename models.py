@@ -14,7 +14,7 @@ class Project(Base):
     __tablename__ = "projects"
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(100))
-    owner_id = Column(Integer, ForeignKey=("users.id"))
+    owner_id = Column(Integer, ForeignKey("users.id"))
     created_at = Column(DateTime, default=datetime.utcnow)
 
 class Task(Base):
