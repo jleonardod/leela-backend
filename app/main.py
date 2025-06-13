@@ -61,7 +61,8 @@ def create_task(task: TaskCreate, db: Session = Depends(get_db)):
     db.refresh(db_task)
     return db_task
 
-@app.get("/tasks/", response_model=List[TaskCreate])
-def read_tasks(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    tasks = db.query(models.Task).offset(skip).limit(limit).all()
-    return tasks
+@app.get("/users/me", response_model=schemas.User)
+def read_users_me(
+    current_user: schemas.User = Depends(auth.get_current_active_user)
+):
+    return current_user
